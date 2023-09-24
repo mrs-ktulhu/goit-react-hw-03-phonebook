@@ -1,24 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: inline-flex;
-  border: solid 1px black;
-  padding: 15px;
-  width: 300px;
-`;
-
-const FormInput = styled.label`
-  display: contents;
-  input {
-    margin: 5px 0 15px 0;
-  }
-`;
-
-const SubmitButton = styled.button`
-  cursor: pointer;
-`;
+import { Container, FormInput, SubmitButton } from './ContactForm.styled';
 
 export default class ContactForm extends Component {
   state = {
@@ -30,12 +12,21 @@ export default class ContactForm extends Component {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
 
-    this.props.onSubmit(this.state.name, this.state.number);
-    this.setState({ name: '', number: '' });
-  };
+handleSubmit = e => {
+  e.preventDefault();
+
+  const { name, number } = this.state;
+
+  if (this.props.contacts.some(contact => contact.text === name)) {
+    alert(`${name} is already in contacts.`);
+    this.setState({ name: '' }); 
+  } else {
+    this.props.onSubmit(name, number);
+    this.setState({ name: '', number: '' }); 
+  }
+};
+
 
   render() {
     return (

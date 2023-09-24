@@ -59,7 +59,7 @@ export default class App extends Component {
     return (
       <Wrap>
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.handleAddContact} />
+        <ContactForm contacts={this.state.contacts} onSubmit={this.handleAddContact} />
 
         <h2>Contacts</h2>
         <Filter filter={this.state.filter} changeFilter={this.changeFilter} />

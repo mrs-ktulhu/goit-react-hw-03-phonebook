@@ -1,14 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const FilterWrap = styled.label`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  input {
-    margin-top: 10px;
-  }
-`;
+import { FilterWrap } from './Filter.styled';
 
 const Filter = ({ filter, changeFilter }) => (
   <FilterWrap>
